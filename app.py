@@ -10,9 +10,7 @@ app = Flask(__name__)
 processing_times = []
 
 def calculate_average_time():
-    if not processing_times:
-        return 115
-    return mean(processing_times)
+    return 115 if not processing_times else mean(processing_times)
 
 def background_task():
     while True:
