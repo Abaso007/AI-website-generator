@@ -19,11 +19,16 @@ def generate_images(html_content, STABLEHORDE_API_KEY, local_directory):
     # Process images in CSS
     style_elements = soup.find_all("style")
     for style_element in style_elements:
-        css_content = style_element.string
-        if css_content:
+        if css_content := style_element.string:
             css_urls = re.findall(URL_PATTERN, css_content)
             for css_url in css_urls:
-                image_path = generate_image(None, "Generate a beautiful realistic photo for a background picture of a banner:"+css_url, css_url, STABLEHORDE_API_KEY, local_directory)
+                image_path = generate_image(
+                    None,
+                    f"Generate a beautiful realistic photo for a background picture of a banner:{css_url}",
+                    css_url,
+                    STABLEHORDE_API_KEY,
+                    local_directory,
+                )
                 image_name = image_path.split("/")[-1]
                 new_url = f'./images/{image_name}'
                 css_content = css_content.replace(css_url, new_url)

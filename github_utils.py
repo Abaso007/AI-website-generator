@@ -6,8 +6,7 @@ def get_repo(access_token, repo_name):
     try:
         github = Github(access_token)
         user = github.get_user()
-        repo = user.get_repo(repo_name)
-        return repo
+        return user.get_repo(repo_name)
     except BadCredentialsException:
         print("Error: Invalid access token. Please check your access token and try again.")
     except UnknownObjectException:
